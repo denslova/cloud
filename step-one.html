@@ -33,28 +33,50 @@ $('#convert').on("click", function(event) {
 
         var codeVal = urlParams.code;
 
-        fetch("https://canvas.fxlongterm.com/login/oauth2/token", {
-        "method": "POST",
-        "headers": {
-            "Content-Type" : "application/json", 
-            "cache-control": "no-cache"            
-        },
-        "body": JSON.stringify({
-            "grant_type"      : "authorization_code",    
-            "client_id"       : "10000000000001",
-            "client_secret"   : "nyo6Q9VPT6KJ4mhtxpu8Uq82dXIUWL4YSO2CVQCv5c6ykOFtXAAERMHp10hsHQKV",
-            "code"            : codeVal,
-            "redirect_uri"    : "https://canvas.fxlongterm.com/step-two.html"
-        })
+        $.ajax({
+            url: "https://canvas.fxlongterm.com/login/oauth2/token",
+            type: "POST",
+            success: cbFunction,
+            data: {
+                "grant_type"      : "authorization_code",    
+                "client_id"       : "10000000000001",
+                "client_secret"   : "nyo6Q9VPT6KJ4mhtxpu8Uq82dXIUWL4YSO2CVQCv5c6ykOFtXAAERMHp10hsHQKV",
+                "code"            : codeVal,
+                "redirect_uri"    : "https://canvas.fxlongterm.com/step-two.html"            
+            },
+            contentType: "json"
+        });        
 
-        }).then(function(response) {
-        console.log(response);
-        }).catch(function(error) {
-        console.error(error);
-        })
+        function cbFunction(arg1){
+            console.log(arg1);
+        }
+        // fetch("https://canvas.fxlongterm.com/login/oauth2/token", {
+        // "method": "POST",
+        // "headers": {
+        //     "Content-Type" : "application/json", 
+        //     "cache-control": "no-cache"            
+        // },
+        // "body": JSON.stringify({
+        //     "grant_type"      : "authorization_code",    
+        //     "client_id"       : "10000000000001",
+        //     "client_secret"   : "nyo6Q9VPT6KJ4mhtxpu8Uq82dXIUWL4YSO2CVQCv5c6ykOFtXAAERMHp10hsHQKV",
+        //     "code"            : codeVal,
+        //     "redirect_uri"    : "https://canvas.fxlongterm.com/step-two.html"
+        // })
+
+        // }).then(function(response) {
+        // console.log(response);
+        // }).catch(function(error) {
+        // console.error(error);
+        // })
     }
 
 });
+
+
+
+
+
 
 function getJsonFromUrl() {
   var query = location.search.substr(1);
