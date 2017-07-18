@@ -19,17 +19,18 @@ if("code" in urlParams){
 
     var codeVal = urlParams.code;
 
-    fetch('canvas.fxlongterm.com/login/oauth2/token', {
+    fetch('https://canvas.fxlongterm.com/login/oauth2/token', {
       'method': 'POST',
     //   'headers': {
     //     'Authorization': 'key=jgrowings',
     //     'Content-Type': 'application/json'
     //   },
       'body': JSON.stringify({
+        grant_type      : 'authorization_code',    
         client_id       : '10000000000001',
         client_secret   : 'nyo6Q9VPT6KJ4mhtxpu8Uq82dXIUWL4YSO2CVQCv5c6ykOFtXAAERMHp10hsHQKV',
         code            : codeVal,
-        redirect_uri    : 'canvas.fxlongterm.com/step-two.html'
+        redirect_uri    : 'https://canvas.fxlongterm.com/step-two.html'
       })
 
     }).then(function(response) {
