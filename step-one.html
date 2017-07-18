@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+
+//GET URL ARGUMENTS
+var urlParams = getJsonFromUrl();
+    
+//CHECK FOR ERROR ARGUMENT
+if("error" in urlParams){
+    document.write("The following error: " + urlParams.error);
+}
+
+//PROVIDE LINK ON SCREEN TO RESTART PROCESS
+
+//CHECK FOR CODE ARGUMENT
+if("code" in urlParams){
+
+    var codeVal = urlParams.code;
+
+    fetch('canvas.fxlongterm.com/login/oauth2/token', {
+      'method': 'POST',
+    //   'headers': {
+    //     'Authorization': 'key=jgrowings',
+    //     'Content-Type': 'application/json'
+    //   },
+      'body': JSON.stringify({
+        client_id       : '10000000000001',
+        client_secret   : 'nyo6Q9VPT6KJ4mhtxpu8Uq82dXIUWL4YSO2CVQCv5c6ykOFtXAAERMHp10hsHQKV',
+        code            : codeVal,
+        redirect_uri    : 'canvas.fxlongterm.com/step-two.html'
+      })
+
+    }).then(function(response) {
+      console.log(response);
+    }).catch(function(error) {
+      console.error(error);
+    })
+}
+
+        //IF CODE ARGUMENT PROVIDED
+        
+        //ISSUE A POST REQUEST TO /LOGIN/OAUTH2/TOKEN WITH K/V PAIRS
+
+
+</script>
+</head>
+<body>
+
+<div>
+
+</div>
+
+<p>If you click on me, I will disappear.</p>
+
+<script>
+
+function getJsonFromUrl() {
+  var query = location.search.substr(1);
+  var result = {};
+  query.split("&").forEach(function(part) {
+    var item = part.split("=");
+    result[item[0]] = decodeURIComponent(item[1]);
+  });
+  return result;
+} 
+
+</script>
+
+</body>
+</html>
