@@ -1,3 +1,4 @@
+//git test
 $(document).ready(function(){
 
 const gkTField = document.getElementById("my-textfield");
@@ -44,10 +45,6 @@ const finalScore = $("#finalScore").val();
     $("p").click(function(){
         $(this).hide();
     });
-
-
-
-
 
 
 
